@@ -266,8 +266,8 @@ export default function Home() {
             className="text-lg md:text-xl text-[#c2c2c2] leading-relaxed mb-6"
             style={{ fontFamily: 'Crimson Text, serif' }}
           >
-            I grew up in Dallas, TX, and have been at the forefront of digital marketing since
-            the space began taking off.
+            I grew up in Dallas, TX, and have been at the forefront of growth since
+            before screenshots of monkeys costed people millions.
           </motion.div>
 
           <motion.div
@@ -275,7 +275,15 @@ export default function Home() {
             className="text-lg md:text-xl text-[#c2c2c2] leading-relaxed mb-6"
             style={{ fontFamily: 'Crimson Text, serif' }}
           >
-            When people ask me what I do for fun, I say "playing video games," "traveling," and "trying new restaurants."
+            From dropping bodies as a former professional Fortnite player to dropping the coolest partnerships in the industry, I weaponize my slightly-autistic obsession to scale your brand.
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="text-lg md:text-xl text-[#c2c2c2] leading-relaxed mb-6"
+            style={{ fontFamily: 'Crimson Text, serif' }}
+          >
+            Think less "just vibes," more "strategic chaos."
           </motion.div>
 
           <motion.div
@@ -283,8 +291,7 @@ export default function Home() {
             className="text-lg md:text-xl text-[#c2c2c2] leading-relaxed"
             style={{ fontFamily: 'Crimson Text, serif' }}
           >
-            I believe in authentic connections and sustainable growth strategies that create real value
-            for both brands and their communities.
+            Hit me up, unless you still use Internet Explorer (then please don't).
           </motion.div>
         </motion.section>
 
