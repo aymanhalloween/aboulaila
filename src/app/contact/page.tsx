@@ -40,8 +40,14 @@ export default function Contact() {
       type: "social"
     },
     {
+      label: "Twitter",
+      value: "@mabthemangoo",
+      href: "https://x.com/mabthemangoo",
+      type: "social"
+    },
+    {
       label: "Location",
-      value: "Dallas, Texas",
+      value: "San Francisco, California",
       href: null,
       type: "info"
     }

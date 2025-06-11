@@ -14,7 +14,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const pageVariants = {
     initial: {
       opacity: 0,
-      y: 20,
+      y: 15,
     },
     in: {
       opacity: 1,
@@ -22,14 +22,14 @@ export default function PageTransition({ children }: PageTransitionProps) {
     },
     out: {
       opacity: 0,
-      y: -10,
+      y: -8,
     },
   };
 
   const pageTransition = {
     type: 'tween',
-    ease: 'easeOut',
-    duration: 0.3,
+    ease: [0.25, 0.46, 0.45, 0.94],
+    duration: 0.24,
   };
 
   return (
@@ -42,6 +42,9 @@ export default function PageTransition({ children }: PageTransitionProps) {
         variants={pageVariants}
         transition={pageTransition}
         className="w-full"
+        style={{
+          willChange: 'transform, opacity',
+        }}
       >
         {children}
       </motion.div>

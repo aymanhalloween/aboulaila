@@ -12,41 +12,41 @@ export default function Portfolio() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
+        staggerChildren: 0.12,
+        delayChildren: 0.24,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 24, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.7,
-        ease: "easeOut",
+        duration: 0.56,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
 
   const cardVariants = {
-    hidden: { scale: 0.95, opacity: 0, y: 20 },
+    hidden: { scale: 0.96, opacity: 0, y: 16 },
     visible: {
       scale: 1,
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
+        duration: 0.48,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
     hover: {
-      y: -8,
-      scale: 1.02,
+      y: -6,
+      scale: 1.015,
       transition: {
-        duration: 0.3,
-        ease: "easeOut",
+        duration: 0.24,
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
@@ -55,37 +55,43 @@ export default function Portfolio() {
     <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.4 }}
       className="min-h-screen bg-[#040404] text-white w-full flex justify-center relative z-10"
+      style={{
+        willChange: 'opacity',
+      }}
     >
       <div className="max-w-4xl w-full px-6 py-12 md:py-20">
         {/* Header */}
         <motion.header
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.64 }}
           className="mb-16"
+          style={{
+            willChange: 'transform, opacity',
+          }}
         >
           <motion.div
-            whileHover={{ x: -5 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            whileHover={{ x: -4 }}
+            transition={{ type: "spring", stiffness: 500, damping: 35 }}
           >
             <Link href="/" className="text-[#c2c2c2] hover:text-white transition-all duration-300 mb-8 inline-block hover-scale link-slide">
               ← Back to Home
             </Link>
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.64, delay: 0.16 }}
             className="text-4xl md:text-5xl font-light mb-8"
           >
             Campaign Portfolio
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.64, delay: 0.32 }}
             className="text-[#c2c2c2] text-lg leading-relaxed max-w-3xl"
           >
             Growth campaigns, partnerships, and Web3 initiatives that have generated millions in volume and engagement across gaming, crypto, and consumer brands.
@@ -95,8 +101,11 @@ export default function Portfolio() {
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.64, delay: 0.48 }}
           className="section-divider origin-left"
+          style={{
+            willChange: 'transform',
+          }}
         />
 
         {/* Featured Campaigns */}
@@ -134,17 +143,27 @@ export default function Portfolio() {
                 </p>
               </div>
               <motion.div
-                className="w-full h-64 bg-[#272727] rounded-lg flex items-center justify-center group-hover:bg-[#343434] transition-all duration-500 relative overflow-hidden"
+                className="w-full group-hover:opacity-90 transition-all duration-500 relative"
                 whileHover={{ scale: 1.02 }}
               >
+                <img
+                  src="/campaign-images/bloom-she-rises.png"
+                  alt="Bloom Campaign - SHE RISES"
+                  className="w-full h-auto rounded-lg"
+                  onError={(e) => {
+                    // Fallback to animated placeholder if image fails to load
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
                 <AnimatePresence>
-                  {hoveredProject === 'bloomverse' ? (
+                  {hoveredProject === 'bloomverse' && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 flex items-center justify-center"
+                      className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/30 flex items-center justify-center rounded-lg"
                     >
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -152,25 +171,29 @@ export default function Portfolio() {
                         transition={{ delay: 0.1 }}
                         className="text-center"
                       >
-                        <motion.div
-                          animate={{ rotate: [0, 5, -5, 0] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                          className="text-4xl mb-2"
-                        >
-                          🌸
-                        </motion.div>
-                        <div className="text-sm text-[#c2c2c2]">$150M Volume • $51M Market Cap</div>
+                        <div className="text-sm text-white font-medium">$150M Volume • $51M Market Cap</div>
                       </motion.div>
                     </motion.div>
-                  ) : (
-                    <motion.span
-                      initial={{ opacity: 1 }}
-                      className="text-[#5d5d5d] group-hover:text-[#7c7c7c] transition-colors duration-300"
-                    >
-                      Play Bloomverse Campaign
-                    </motion.span>
                   )}
                 </AnimatePresence>
+                {/* Fallback animated placeholder */}
+                <motion.div className="hidden w-full h-80 bg-[#272727] rounded-lg flex items-center justify-center">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-center"
+                  >
+                    <motion.div
+                      animate={{ rotate: [0, 5, -5, 0] }}
+                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      className="text-4xl mb-2"
+                    >
+                      🌸
+                    </motion.div>
+                    <div className="text-sm text-[#c2c2c2]">$150M Volume • $51M Market Cap</div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
@@ -194,17 +217,26 @@ export default function Portfolio() {
                 </p>
               </div>
               <motion.div
-                className="w-full h-64 bg-[#272727] rounded-lg flex items-center justify-center group-hover:bg-[#343434] transition-all duration-500 relative overflow-hidden"
+                className="w-full group-hover:opacity-90 transition-all duration-500 relative"
                 whileHover={{ scale: 1.02 }}
               >
+                <img
+                  src="/campaign-images/samsung-odyssey-cup.png"
+                  alt="Samsung Odyssey Cup Campaign"
+                  className="w-full h-auto rounded-lg"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
                 <AnimatePresence>
-                  {hoveredProject === 'samsung' ? (
+                  {hoveredProject === 'samsung' && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-gray-900/20 flex items-center justify-center"
+                      className="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-gray-900/30 flex items-center justify-center rounded-lg"
                     >
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -212,22 +244,29 @@ export default function Portfolio() {
                         transition={{ delay: 0.1 }}
                         className="text-center"
                       >
-                        <motion.div
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                          className="text-4xl mb-2"
-                        >
-                          📱
-                        </motion.div>
-                        <div className="text-sm text-[#c2c2c2]">4M+ Views • Gaming Campaign</div>
+                        <div className="text-sm text-white font-medium">4M+ Views • Gaming Campaign</div>
                       </motion.div>
                     </motion.div>
-                  ) : (
-                    <motion.span className="text-[#5d5d5d] group-hover:text-[#7c7c7c] transition-colors duration-300">
-                      Samsung Gaming Campaign
-                    </motion.span>
                   )}
                 </AnimatePresence>
+                {/* Fallback animated placeholder */}
+                <motion.div className="hidden w-full h-80 bg-[#272727] rounded-lg flex items-center justify-center">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-center"
+                  >
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                      className="text-4xl mb-2"
+                    >
+                      📱
+                    </motion.div>
+                    <div className="text-sm text-[#c2c2c2]">4M+ Views • Gaming Campaign</div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </motion.div>
 
@@ -251,17 +290,26 @@ export default function Portfolio() {
                 </p>
               </div>
               <motion.div
-                className="w-full h-64 bg-[#272727] rounded-lg flex items-center justify-center group-hover:bg-[#343434] transition-all duration-500 relative overflow-hidden"
+                className="w-full group-hover:opacity-90 transition-all duration-500 relative"
                 whileHover={{ scale: 1.02 }}
               >
+                <img
+                  src="/campaign-images/brett-fomo-fest.png"
+                  alt="Brett FOMO FEST Campaign featuring Offset and Rick Ross"
+                  className="w-full h-auto rounded-lg"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
                 <AnimatePresence>
-                  {hoveredProject === 'brett' ? (
+                  {hoveredProject === 'brett' && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 bg-gradient-to-br from-green-900/20 to-yellow-900/20 flex items-center justify-center"
+                      className="absolute inset-0 bg-gradient-to-br from-green-900/30 to-yellow-900/30 flex items-center justify-center rounded-lg"
                     >
                       <motion.div
                         initial={{ y: 20, opacity: 0 }}
@@ -269,22 +317,29 @@ export default function Portfolio() {
                         transition={{ delay: 0.1 }}
                         className="text-center"
                       >
-                        <motion.div
-                          animate={{ rotate: [0, 10, -10, 0] }}
-                          transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
-                          className="text-4xl mb-2"
-                        >
-                          🐸
-                        </motion.div>
-                        <div className="text-sm text-[#c2c2c2]">Celebrity Partnerships • Forbes Feature</div>
+                        <div className="text-sm text-white font-medium">Celebrity Partnerships • Forbes Feature</div>
                       </motion.div>
                     </motion.div>
-                  ) : (
-                    <motion.span className="text-[#5d5d5d] group-hover:text-[#7c7c7c] transition-colors duration-300">
-                      Brett Campaign
-                    </motion.span>
                   )}
                 </AnimatePresence>
+                {/* Fallback animated placeholder */}
+                <motion.div className="hidden w-full h-80 bg-[#272727] rounded-lg flex items-center justify-center">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-center"
+                  >
+                    <motion.div
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                      className="text-4xl mb-2"
+                    >
+                      🐸
+                    </motion.div>
+                    <div className="text-sm text-[#c2c2c2]">Celebrity Partnerships • Forbes Feature</div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>
@@ -293,21 +348,24 @@ export default function Portfolio() {
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
+          transition={{ duration: 0.64, delay: 1.44 }}
           className="section-divider origin-left"
+          style={{
+            willChange: 'transform',
+          }}
         />
 
         {/* Other Campaigns */}
         <motion.section
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.8 }}
+          transition={{ duration: 0.64, delay: 1.76 }}
           className="mb-16"
         >
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 2 }}
+            transition={{ duration: 0.48, delay: 1.92 }}
             className="text-2xl font-light mb-8"
           >
             Recent Projects
@@ -325,84 +383,132 @@ export default function Portfolio() {
                 title: 'Playa3ull Partnerships',
                 description: 'Web3 Gaming, Community Growth',
                 href: 'https://playa3ull.games',
-                emoji: '🎮',
+                image: '/campaign-images/playbull-nexus.png',
                 metric: '3x Engagement Growth',
-                gradient: 'from-red-900/20 to-orange-900/20'
+                gradient: 'from-red-900/30 to-orange-900/30'
               },
               {
                 id: 'shrapnel',
                 title: 'Shrapnel Game Launch',
                 description: 'Influencer Partnerships, Gaming',
                 href: 'https://www.shrapnel.com',
-                emoji: '🎯',
+                image: '/campaign-images/shrapnel-game.png',
                 metric: 'Creator Partnerships',
-                gradient: 'from-gray-900/20 to-red-900/20'
+                gradient: 'from-gray-900/30 to-red-900/30'
               },
               {
                 id: 'redbull',
                 title: 'Red Bull Contested',
                 description: 'Tournament Marketing, Gaming',
                 href: 'https://www.redbull.com/gb-en/events/red-bull-contested',
-                emoji: '🏆',
+                image: '/campaign-images/redbull-contested.png',
                 metric: 'Fortnite Tournament',
-                gradient: 'from-red-900/20 to-blue-900/20'
+                gradient: 'from-red-900/30 to-blue-900/30'
               },
               {
                 id: 'invisible',
                 title: 'Invisible Friends NFT',
                 description: 'Community Operations, Web3',
                 href: 'https://invisiblefriends.io',
-                emoji: '👻',
+                image: '/campaign-images/invisible-friends-character.png',
                 metric: '15 ETH Floor • $130M Volume',
-                gradient: 'from-purple-900/20 to-pink-900/20'
+                gradient: 'from-purple-900/30 to-pink-900/30'
               }
-            ].map((project, index) => (
+            ].map((project) => (
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.05, y: -4 }}
                 className="group cursor-pointer"
                 onHoverStart={() => setHoveredProject(project.id)}
                 onHoverEnd={() => setHoveredProject(null)}
               >
-                <motion.div
-                  className="w-full h-48 bg-[#272727] rounded-lg flex items-center justify-center group-hover:bg-[#343434] transition-all duration-500 mb-4 relative overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <AnimatePresence>
-                    {hoveredProject === project.id ? (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
-                      >
+                {project.id === 'invisible' ? (
+                  // Invisible Friends - standalone image without container
+                  <div className="mb-4 flex justify-center">
+                    <div className="relative inline-block">
+                      <img
+                        src={project.image}
+                        alt={`${project.title} Campaign`}
+                        className="max-h-48 object-contain"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <AnimatePresence>
+                        {hoveredProject === project.id && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
+                          >
+                            <motion.div
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.1 }}
+                              className="text-center"
+                            >
+                              <div className="text-xs text-white font-medium">{project.metric}</div>
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                      {/* Fallback animated placeholder */}
+                      <motion.div className="hidden w-full h-64 bg-[#272727] flex items-center justify-center">
+                        <motion.span className="text-[#5d5d5d] group-hover:text-[#7c7c7c] transition-colors duration-300">
+                          {project.title.split(' ')[0]} Campaign
+                        </motion.span>
+                      </motion.div>
+                    </div>
+                  </div>
+                ) : (
+                  // All other projects - regular container
+                  <motion.div
+                    className="w-full group-hover:opacity-90 transition-all duration-500 mb-4 relative"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.title} Campaign`}
+                      className="w-full h-auto rounded-lg"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                    <AnimatePresence>
+                      {hoveredProject === project.id && (
                         <motion.div
-                          initial={{ y: 20, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ delay: 0.1 }}
-                          className="text-center"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center rounded-lg`}
                         >
                           <motion.div
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                            className="text-3xl mb-1"
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-center"
                           >
-                            {project.emoji}
+                            <div className="text-xs text-white font-medium">{project.metric}</div>
                           </motion.div>
-                          <div className="text-xs text-[#c2c2c2]">{project.metric}</div>
                         </motion.div>
-                      </motion.div>
-                    ) : (
+                      )}
+                    </AnimatePresence>
+                    {/* Fallback animated placeholder */}
+                    <motion.div className="hidden w-full h-64 bg-[#272727] rounded-lg flex items-center justify-center">
                       <motion.span className="text-[#5d5d5d] group-hover:text-[#7c7c7c] transition-colors duration-300">
                         {project.title.split(' ')[0]} Campaign
                       </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                    </motion.div>
+                  </motion.div>
+                )}
                 <motion.h3
-                  whileHover={{ x: 5 }}
+                  whileHover={{ x: 4 }}
                   className="text-lg font-medium mb-2 group-hover:text-white transition-colors duration-300"
                 >
                   <a href={project.href} target="_blank" rel="noopener noreferrer">{project.title}</a>
@@ -416,20 +522,23 @@ export default function Portfolio() {
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
+          transition={{ duration: 0.64, delay: 2.4 }}
           className="section-divider origin-left"
+          style={{
+            willChange: 'transform',
+          }}
         />
 
         {/* Contact Section */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2.8 }}
+          transition={{ duration: 0.48, delay: 2.72 }}
         >
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 3 }}
+            transition={{ duration: 0.48, delay: 2.88 }}
             className="text-2xl font-light mb-8"
           >
             Let's work together
@@ -442,8 +551,8 @@ export default function Portfolio() {
           >
             <motion.div
               variants={itemVariants}
-              whileHover={{ x: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              whileHover={{ x: 8 }}
+              transition={{ type: "spring", stiffness: 500, damping: 35 }}
             >
               <a href="mailto:mohamedabolaila@gmail.com" className="block text-white link-slide text-lg hover:text-white transition-all duration-300">
                 Email
@@ -451,8 +560,8 @@ export default function Portfolio() {
             </motion.div>
             <motion.div
               variants={itemVariants}
-              whileHover={{ x: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              whileHover={{ x: 8 }}
+              transition={{ type: "spring", stiffness: 500, damping: 35 }}
             >
               <a href="https://cal.com/mohamed" target="_blank" rel="noopener noreferrer" className="block text-white link-slide text-lg hover:text-white transition-all duration-300">
                 Schedule a call

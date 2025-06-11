@@ -22,11 +22,14 @@ export default function FloatingNav() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.6,
+            duration: 0.48, // 20% faster
             ease: [0.25, 0.46, 0.45, 0.94],
-            delay: 2.2 // Appear after preloader
+            delay: pathname === '/' ? 1.4 : 0.2 // Faster delay for landing page, immediate for others
           }}
           className="flex justify-center mb-6 md:mb-8"
+          style={{
+            willChange: 'transform, opacity', // Hardware acceleration
+          }}
         >
           <div className="bg-gradient-to-r from-gray-800/90 via-gray-700/90 to-gray-800/90 backdrop-blur-md border border-gray-600/30 rounded-full px-4 md:px-8 py-3 md:py-4 shadow-2xl max-w-[95vw] overflow-hidden">
             <div className="flex items-center space-x-4 md:space-x-8">
